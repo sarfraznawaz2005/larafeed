@@ -5,7 +5,7 @@
 
     <button type="button"
             class="larabtn larafeed_button_blue larafeed_button">
-        {{config('larafeed.button.title', '&#9993; Feedback')}}
+        {!! config('larafeed.button.title', '&#9993; Feedback') !!}
     </button>
 
     <style>
@@ -102,10 +102,12 @@
             document.querySelector("#feedback_submit").disabled = true;
 
             toggleModal(function () {
-                html2canvas(document.querySelector("{{config('larafeed.screenshots.screenshot_selector', 'body')}}")).then(canvas => {
-                    document.querySelector("#screenshot").value = canvas.toDataURL("image/png");
-                    $this.submit();
-                });
+               setTimeout(function () {
+                   html2canvas(document.querySelector("{{config('larafeed.screenshots.screenshot_selector', 'body')}}")).then(canvas => {
+                       document.querySelector("#screenshot").value = canvas.toDataURL("image/png");
+                       $this.submit();
+                   });
+               }, 250);
             });
         });
     </script>
