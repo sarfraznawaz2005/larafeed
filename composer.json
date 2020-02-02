@@ -1,0 +1,39 @@
+{
+    "name": "sarfraznawaz2005/larafeed",
+    "keywords": [
+        "laravel",
+        "feedback",
+        "customer",
+        "screenshot",
+        "helpdesk",
+        "desk"
+    ],
+    "description": "Laravel package for providing visual feedback via screenshots.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sarfraz Ahmed",
+            "email": "sarfraznawaz2005@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "~5|~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sarfraznawaz2005\\LaraFeed\\": "src/"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sarfraznawaz2005\\LaraFeed\\ServiceProvider"
+            ]
+        }
+    }
+}
