@@ -28,6 +28,8 @@ It should publish `config/larafeed.php` config file and migration file.
 
 Now run `php artisan migrate` to create `larafeeds` database table.
 
+Include `@include('larafeed::view')` in your blade layout file.
+
 That's it, Feedback button should now be visible on pages of your application.
 
 Checkout config file for different options.
