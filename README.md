@@ -44,7 +44,8 @@ When user presses Send Feedback button, existing page's screenshot will automati
 
 ## Misc
 
-You can listen to `Sarfraznawaz2005\LaraFeed\Events\FeedbackReceivedEvent::class` event if need to use captured feedback in your own way.
+- Should you need to customize look and feel of Feedback button or dialog, you can do so by modifying css of file `public/vendor/larafeed/css/larafeed.css` file.
+- You can listen to `Sarfraznawaz2005\LaraFeed\Events\FeedbackReceivedEvent::class` event if need to use captured feedback in your own way.
 
 ## Security
 
