@@ -38,6 +38,10 @@ Checkout config file for different options.
 
 ![Main Window](https://github.com/sarfraznawaz2005/larafeed/blob/master/screenshot.png?raw=true)
 
+## Misc
+
+You can listen to `Sarfraznawaz2005\LaraFeed\Events\FeedbackReceivedEvent::class` event if need to use captured feedback in your own way.
+
 ## Security
 
 If you discover any security related issues, please email sarfraznawaz2005@gmail.com instead of using the issue tracker.
