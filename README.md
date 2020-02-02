@@ -36,6 +36,8 @@ Checkout config file for different options.
 
 ## Screenshot ##
 
+When user presses Send Feedback button, existing page's screenshot will automatically be captured and saved ofcourse without that feedback dialog.
+
 ![Main Window](https://github.com/sarfraznawaz2005/larafeed/blob/master/screenshot.png?raw=true)
 
 ## Misc
