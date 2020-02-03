@@ -6,6 +6,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Sarfraznawaz2005\LaraFeed\Events\FeedbackReceivedEvent;
 use Sarfraznawaz2005\LaraFeed\Models\LaraFeedModel;
 use Sarfraznawaz2005\LaraFeed\Notifications\LaraFeedNotification;
@@ -29,7 +30,9 @@ class LaraFeedController extends Controller
 
         if ($model->save()) {
 
-            if ($this->saveScreenshot($request, $model->id . '.png')) {
+            if (config('larafeed.screenshots.capture_screenshots', true)) {
+                $this->saveScreenshot($request, $model->id . '.png');
+
                 $model->screenshot = $model->id . '.png';
                 $model->save();
             }
@@ -53,32 +56,29 @@ class LaraFeedController extends Controller
      */
     protected function sendMail(LaraFeedModel $model)
     {
-        if ($emails = config('larafeed.mail.mail_receivers', [])) {
-            foreach($emails as $email) {
-                $recipient = new DynamicRecipient($email);
-                $recipient->notify(new LaraFeedNotification($model));
+        try {
+            if ($emails = config('larafeed.mail.mail_receivers', [])) {
+                foreach ($emails as $email) {
+                    $recipient = new DynamicRecipient($email);
+                    $recipient->notify(new LaraFeedNotification($model));
+                }
             }
+        } catch (\Exception $e) {
+            Log::warning('LaraFeed - Could not send email: ' . $e->getMessage());
         }
     }
 
     /**
      * @param Request $request
      * @param $name
-     * @return bool
      */
-    protected function saveScreenshot(Request $request, $name): bool
+    protected function saveScreenshot(Request $request, $name)
     {
-        if (config('larafeed.screenshots.capture_screenshots', true)) {
-            $outputPath = config('larafeed.screenshots.screenshots_store_folder');
-            @mkdir($outputPath);
+        $outputPath = config('larafeed.screenshots.screenshots_store_folder');
+        @mkdir($outputPath);
 
-            $screenshotData = substr($request->screenshot, strpos($request->screenshot, ',') + 1);
+        $screenshotData = substr($request->screenshot, strpos($request->screenshot, ',') + 1);
 
-            file_put_contents($outputPath . DIRECTORY_SEPARATOR . $name, base64_decode($screenshotData));
-
-            return true;
-        }
-
-        return false;
+        @file_put_contents($outputPath . DIRECTORY_SEPARATOR . $name, base64_decode($screenshotData));
     }
 }

@@ -5,7 +5,7 @@
 
     <style>{!! config('larafeed.feedback.custom_css', '') !!}</style>
 
-    <button type="button"
+    <button data-html2canvas-ignore type="button"
             class="larabtn larafeed_button_blue larafeed_button">
         {!! config('larafeed.button.title', '&#9993; Feedback') !!}
     </button>
@@ -18,7 +18,7 @@
     </style>
 
     <!-- Modal -->
-    <div class="larafeed_modal">
+    <div class="larafeed_modal" data-html2canvas-ignore>
         <form id="feedback_form" action="{{route('larafeed_store')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
 
@@ -80,12 +80,8 @@
     <script>
         var modal = document.querySelector(".larafeed_modal");
 
-        function toggleModal(callback) {
+        function toggleModal() {
             modal.classList.toggle("larafeed_show_modal");
-
-            if (callback && typeof callback === 'function') {
-                callback();
-            }
         }
 
         document.querySelector(".larafeed_button_close").addEventListener("click", toggleModal);
@@ -99,18 +95,23 @@
 
         document.querySelector("#feedback_form").addEventListener("submit", function (event) {
             var $this = this;
+            var options = {
+                //backgroundColor: null,
+                imageTimeout: 0,
+                logging: false,
+            };
+
             event.preventDefault();
 
             document.querySelector("#feedback_submit").disabled = true;
+            document.querySelector("#feedback_submit").innerHTML = "Please wait";
 
-            toggleModal(function () {
-               setTimeout(function () {
-                   html2canvas(document.querySelector("{{config('larafeed.screenshots.screenshot_selector', 'body')}}")).then(canvas => {
-                       document.querySelector("#screenshot").value = canvas.toDataURL("image/png");
-                       $this.submit();
-                   });
-               }, 250);
-            });
+            setTimeout(function () {
+                html2canvas(document.querySelector("{{config('larafeed.screenshots.screenshot_selector', 'body')}}"), options).then(canvas => {
+                    document.querySelector("#screenshot").value = canvas.toDataURL("image/png");
+                    $this.submit();
+                });
+            }, 100);
         });
     </script>
 
