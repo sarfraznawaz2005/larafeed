@@ -28,7 +28,7 @@ It should publish `config/larafeed.php` config file and migration file.
 
 Now run `php artisan migrate` to create `larafeeds` database table.
 
-Include `@include('larafeed::view')` in your blade layout file.
+Put `@include('larafeed::view')` in your blade layout file.
 
 That's it, Feedback button should now be visible on pages of your application.
 
@@ -44,7 +44,7 @@ When user presses Send Feedback button, existing page's screenshot will automati
 
 ## Misc
 
-- Should you need to customize look and feel of Feedback button or dialog, you can do so by modifying css of file `public/vendor/larafeed/css/larafeed.css` file.
+- Should you need to customize look and feel of Feedback button or dialog, you can use `feedback.custom_css` config option.
 - You can listen to `Sarfraznawaz2005\LaraFeed\Events\FeedbackReceivedEvent::class` event if need to use captured feedback in your own way.
 
 ## Security

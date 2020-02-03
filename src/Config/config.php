@@ -32,6 +32,12 @@ return [
          * Note: LaraFeed will populate "$message" variable which you can use after submission.
          */
         'success_message' => 'Thanks for your feedback!',
+
+        /*
+         * CSS you may want to use to change look and feel of feedback button and dialog.
+         * Default styles will be overriden by this. Don't put '<style>' tags.
+         */
+        'custom_css' => '',
     ],
 
     /*
