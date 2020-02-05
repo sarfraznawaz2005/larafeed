@@ -3,8 +3,6 @@
     <link rel="stylesheet" href="{{ asset('vendor/larafeed/css/larafeed.css') }}">
     <script src="{{ asset('vendor/larafeed/js/html2canvas.min.js') }}"></script>
 
-    <style>{!! config('larafeed.feedback.custom_css', '') !!}</style>
-
     <button data-html2canvas-ignore type="button"
             class="larabtn larafeed_button_blue larafeed_button">
         {!! config('larafeed.button.title', '&#9993; Feedback') !!}
