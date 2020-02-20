@@ -14,5 +14,7 @@ class LaraFeedModel extends Model
         'message',
         'ip',
         'uri',
+        'browser',
+        'os',
     ];
 }

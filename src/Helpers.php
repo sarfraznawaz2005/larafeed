@@ -1,5 +1,7 @@
 <?php
 
+use Sarfraznawaz2005\LaraFeed\Browser;
+
 if (!function_exists('larafeedButtonCSS')) {
     function larafeedButtonCSS()
     {
@@ -34,5 +36,12 @@ if (!function_exists('larafeedUser')) {
         }
 
         return $user;
+    }
+}
+
+if (!function_exists('larafeedGetBrowser')) {
+    function larafeedGetBrowser()
+    {
+        return new Browser();
     }
 }

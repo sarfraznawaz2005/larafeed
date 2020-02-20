@@ -42,6 +42,10 @@ When user presses Send Feedback button, existing page's screenshot will automati
 
 ![Main Window](https://github.com/sarfraznawaz2005/larafeed/blob/master/screenshot.png?raw=true)
 
+## Adding Custom Fields
+
+After you have published package assets, you can add custom fields by modifying file `resources/views/vendor/larafeed/view.blade.php` and create a migration to add fields to `larafeeds` table.
+
 ## Misc
 
 - You can listen to `Sarfraznawaz2005\LaraFeed\Events\FeedbackReceivedEvent::class` event if need to use captured feedback in your own way.

@@ -21,6 +21,8 @@ class CreateLaraFeedsTable extends Migration
             $table->string('screenshot', 100)->nullable();
             $table->string('ip', 100)->nullable();
             $table->string('uri', 100)->nullable();
+            $table->string('browser', 100)->nullable();
+            $table->string('os', 100)->nullable();
             $table->timestamps();
         });
     }

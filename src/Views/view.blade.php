@@ -59,6 +59,8 @@
                 <input type="hidden" name="ip" value="{{request()->ip()}}">
                 <input type="hidden" name="uri" value="{{request()->fullUrl()}}">
                 <input type="hidden" name="screenshot" id="screenshot" value="">
+                <input type="hidden" name="browser" id="browser" value="{{(larafeedGetBrowser()->getBrowser() ?: 'Unknown') . ' (' . larafeedGetBrowser()->getVersion() . ')'}}">
+                <input type="hidden" name="os" id="os" value="{{larafeedGetBrowser()->getPlatform() ?: 'Unknown'}}">
 
                 <div class="pull-right">
                     <button type="button" class="larabtn larafeed_button_close">Close</button>
